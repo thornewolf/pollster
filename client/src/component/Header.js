@@ -1,34 +1,35 @@
 import React from 'react';
 import { CardContent, Typography, CardMedia, CardActionArea, Button, CardActions, AppBar } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import Toolbar from '@material-ui/core/Toolbar';
+import { fade,makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import SearchIcon from '@material-ui/icons/Search';
 import './Header.css'
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
     title: {
       flexGrow: 1,
-      paddingTop: 5,
-      paddingLeft: 4,
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
+      },
     },
     paper: {
       backgroundColor: theme.palette.info.dark,
-    }
+    },
   }));
   
 function Header() {
     const classes = useStyles()
     return (
-      <Paper>
+      <Paper style={{paddingBottom: 20}}>
         <AppBar position="fixed">
-          <Typography variant="h5" className={classes.paper}>
+          <Toolbar className={classes.paper}>
+          <Typography variant="h5">
               Pollster
           </Typography>
+          </Toolbar>
         </AppBar>
       </Paper>
     )

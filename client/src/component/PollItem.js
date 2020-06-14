@@ -17,7 +17,6 @@ function PollItem(props) {
         <Paper>
             <Card 
             className={props.className || classes.root}
-            elevation={2}
             variant="outlined"
         >
             <CardContent>

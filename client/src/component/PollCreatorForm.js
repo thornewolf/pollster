@@ -7,6 +7,12 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+
 const useStyles = theme => ({
     fab: {
       position: 'fixed',
@@ -67,16 +73,18 @@ class PollCreatorForm extends React.Component {
         } 
         return (
             <Paper>
-            <Card>
-            <CardContent>
-                <h2>Create your own poll</h2>
-                <form onSubmit={this.handleSubmit}>
-                <PollQuestion label="Title" handleChange={this.handleChange.bind(this, 0)} />
-                {questions}
-                <Button variant="contained" color="primary" type="submit" onSubmit={this.handleSubmit}>Submit Poll</Button>
-                </form>
-            </CardContent>
-            </Card>
+                <ExpansionPanel >
+                    <ExpansionPanelSummary>
+                    <h2>Create your own poll</h2>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                    <form onSubmit={this.handleSubmit}>
+                    <PollQuestion label="Title" handleChange={this.handleChange.bind(this, 0)} />
+                    {questions}
+                    <Button variant="contained" color="primary" type="submit" onSubmit={this.handleSubmit}>Submit Poll</Button>
+                    </form>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             </Paper>
             
         )
