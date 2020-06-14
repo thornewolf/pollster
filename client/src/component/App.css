@@ -1,0 +1,17 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.NavHeader > div > img {
+  width: 100px;
+  padding: 20px 20px 20px 20px;
+}
+
+.PollList {
+
+}
+
+.fullWidth {
+  width: 100vw;
+}

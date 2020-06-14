@@ -1,0 +1,7 @@
+.Content {
+    min-height: calc(100vh - 140px);
+    background-color: #F1F2EE;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 10vh;
+  }
