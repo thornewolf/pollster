@@ -1,0 +1,25 @@
+{
+  "name": "pollster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-client": "npm i --prefix ./client/",
+    "install-server": "npm i --prefix ./server/",
+    "install-all": "npm i && npm run install-client && npm run install-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thornewolf/pollster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thornewolf/pollster/issues"
+  },
+  "homepage": "https://github.com/thornewolf/pollster#readme",
+  "dependencies": {
+    "client": "file:client"
+  }
+}
