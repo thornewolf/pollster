@@ -7,6 +7,7 @@
     "install-all": "npm i && npm run install-client && npm run install-server",
     "install-client": "npm i --prefix ./client/",
     "install-server": "npm i --prefix ./server/",
+    "build": "concurrently \"npm run build-client\" \"npm run build-server\"",
     "build-client": "npm start --prefix ./client/",
     "build-server": "npm start --prefix ./server/"
   },
