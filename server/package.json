@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -15,5 +14,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.18",
     "nodemon": "^2.0.4"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
