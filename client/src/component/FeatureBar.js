@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     },
     item: {
     },
-  });  
+});
   
   function FeatureBar() {
     const classes = useStyles();
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
           <h2>Featured Polls</h2>
         </Grid>
         <Grid container direction="row" spacing="3">
-        {items.slice(0,3).map((itemId) => (
+        {items.slice(0,5).map((itemId) => (
               <Grid item key={itemId} className={classes.item}>
                 <PollItem className=" "/>
               </Grid>
@@ -35,4 +35,4 @@ const useStyles = makeStyles({
     )
   }
 
-  export default FeatureBar;
+export default FeatureBar;
