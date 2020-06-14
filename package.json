@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install-all": "npm i && npm run install-client && npm run install-server",
     "install-client": "npm i --prefix ./client/",
     "install-server": "npm i --prefix ./server/",
-    "install-all": "npm i && npm run install-client && npm run install-server"
+    "build-client": "npm start --prefix ./client/",
+    "build-server": "npm start --prefix ./server/"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,6 @@
   },
   "homepage": "https://github.com/thornewolf/pollster#readme",
   "dependencies": {
-    "client": "file:client"
+    "concurrently": "^5.2.0"
   }
 }
