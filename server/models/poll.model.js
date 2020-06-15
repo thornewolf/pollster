@@ -11,10 +11,12 @@ const pollSchema = new Schema({
         maxlength: 280
     },
     answers: [{
-        body: String,
-        minlength: 1,
-        maxlength: 280
-    }]
+        body: {
+            type: String,
+            minlength: 1,
+            maxlength: 280
+        }
+    }],
 }, {
     timestamps: true
 })
