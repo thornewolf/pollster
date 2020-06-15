@@ -14,7 +14,7 @@ Thorne Wolfenbarger - Embry-Riddle Aeronautical University - Google Intern
 To run scripts, ensure you have the latest version of NodeJS and NPM. There are three package.json files: root, client, and server. Root controls the entire application. Client controls client dependencies. Server controls server dependencies.
 
 ```
-npm install-all
+npm run install-all
 ```
 
 Installs dependencies for the entire application. This should be the first script run after pulling the source code.
