@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../logo.png';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography, Button, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';

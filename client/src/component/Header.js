@@ -1,10 +1,8 @@
 import React from 'react';
-import { CardContent, Typography, CardMedia, CardActionArea, Button, CardActions, AppBar } from '@material-ui/core';
-import InputBase from '@material-ui/core/InputBase';
+import { Typography, AppBar } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
-import { fade,makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import SearchIcon from '@material-ui/icons/Search';
 import './Header.css'
 
 const useStyles = makeStyles((theme) => ({

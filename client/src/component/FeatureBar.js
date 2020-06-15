@@ -18,13 +18,13 @@ const useStyles = makeStyles({
     return (
       <Grid 
         container
-        spacing="2"
+        spacing={2}
         direction="column"
         className={classes.root}>
         <Grid item>
           <h2>Featured Polls</h2>
         </Grid>
-        <Grid container direction="row" spacing="3">
+        <Grid container direction="row" spacing={3}>
         {items.slice(0,5).map((itemId) => (
               <Grid item key={itemId} className={classes.item}>
                 <PollItem className=" "/>

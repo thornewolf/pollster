@@ -1,23 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Paper } from '@material-ui/core'
-import { Typography, CardContent } from '@material-ui/core';
+import { Paper } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import axios from 'axios'
 
 
 const useStyles = theme => ({
     fab: {
       position: 'fixed',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
     },
     root: {
         minHeight: "50vh",
@@ -26,7 +21,6 @@ const useStyles = theme => ({
       });
 
 function PollQuestion(props) {
-    const classes = makeStyles(useStyles)
     return (
         <div style={{ paddingBottom: 10 }}>
         <TextField key={props.label} label={props.label} variant="standard" onChange={props.handleChange} />
@@ -59,12 +53,18 @@ class PollCreatorForm extends React.Component {
     }
 
     handleSubmit(event) {
-        const {name, value} = event.target
-        alert(this.state.fields)
+        // const {name, value} = event.target
+        const submission = [...this.state.fields]
+        const title = submission[0]
+        const questions = submission.slice(1,submission.length)
+        const payload = {
+            pollName: title,
+            questions: questions,
+        }
+        axios.post('http://localhost:5000/polls/add', payload).then(res => console.log(res.data))
     }
 
     render() {
-        const { classes } = this.props;
         var questions = [];
         for (let i = 1; i < this.state.questionCount+1; i++) {
             questions.push((

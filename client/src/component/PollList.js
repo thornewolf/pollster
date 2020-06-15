@@ -1,9 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core'
 import PollItem from './PollItem'
 
-const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,5,6,7,8,9,10,11,12,13];
+const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
 
 function PollList() {
   return (
@@ -16,9 +15,7 @@ function PollList() {
       <Grid
           container
           direction="row"
-          justify="left"
-          alignItems="left"
-          spacing="3"
+          spacing={3}
         >
 
           {items.map((itemId) => (
