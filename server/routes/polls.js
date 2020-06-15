@@ -8,9 +8,13 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/add').post((req, res) => {
-    const pollname = req.body.pollname
+    const question = req.body.question
+    const answers = req.body.answers
 
-    const newPoll = new Poll({pollname}) 
+    const newPoll = new Poll({
+        question,
+        answers
+    }) 
 
     newPoll.save()
         .then(() => res.json('Poll added!'))
