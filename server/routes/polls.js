@@ -29,7 +29,20 @@ router.route('/:id').get((req, res) => {
 
 router.route('/:id').delete((req, res) => {
     Poll.findByIdAndDelete(req.params.id)
-        .then(poll => res.json('Poll deleted'))
+        .then(res.json('Poll deleted'))
+        .catch(err => res.status(400).json('Error: ' + err))
+})
+
+router.route('/edit/:id').post((req, res) => {
+    Poll.findById(req.params.id)
+        .then(poll => {
+            poll.question = req.body.question,
+            poll.answers = req.body.answers
+
+            poll.save()
+                .then(() => res.json('Poll updated'))
+                .catch(err => res.status(400).json('Error: ' + err))
+        })
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
