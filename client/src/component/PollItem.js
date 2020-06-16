@@ -8,6 +8,12 @@ import './PollItem.css'
 const useStyles = makeStyles({
     root: {
     },
+    takePoll: {
+        marginRight: 'auto',
+    },
+    viewResults: {
+        marginLeft: 'auto',
+    },
   });  
 
 function PollItem(props) {
@@ -26,11 +32,9 @@ function PollItem(props) {
                 </Typography>
                 
             </CardContent>
-            <CardActions>
-                <Button>Take Poll</Button>
-                <Typography variant="body1" component="p" color="textSecondary" align="right">
-                    5 min
-                </Typography>
+            <CardActions spacing={10}>
+                <Button className={classes.takePoll} color="primary" variant="outlined" onClick={() => {props.setLocationCallback("responding")}}>Take Poll</Button>
+                <Button className={classes.viewResults} color="secondary" variant="outlined" onClick={() => {props.setLocationCallback("results")}}>Results</Button>
             </CardActions>
         </Card>
         </Paper>

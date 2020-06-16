@@ -3,9 +3,11 @@ import { Grid } from '@material-ui/core';
 import FeatureBar from './FeatureBar'
 import PollList from './PollList'
 import PollCreatorForm from './PollCreatorForm'
+import PollResponseForm from './PollResponseForm'
+
 import './Content.css'
 
-function Content() {
+function Content(props) {
     return (
         <Grid
         container
@@ -20,7 +22,7 @@ function Content() {
                         <PollCreatorForm />
                     </Grid>
                     <Grid item>
-                        <PollList />
+                        <PollList setLocationCallback={props.setLocationCallback} />
                     </Grid>
                 </Grid>
             </Grid>
