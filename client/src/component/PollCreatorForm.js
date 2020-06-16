@@ -20,7 +20,7 @@ const useStyles = theme => ({
     },
       });
 
-function PollQuestion(props) {
+function PollAnswer(props) {
     return (
         <div style={{ paddingBottom: 10 }}>
         <TextField key={props.label} label={props.label} variant="standard" onChange={props.handleChange} />
@@ -32,7 +32,7 @@ class PollCreatorForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            questionCount: 3,
+            answerCount: 1,
             fields: [],
         }
         this.handleChange = this.handleChange.bind(this)
@@ -45,30 +45,29 @@ class PollCreatorForm extends React.Component {
         this.setState({
             fields
         })
-        if (i === this.state.questionCount) {
+        if (i === this.state.answerCount) {
             this.setState({
-                questionCount: i+1
+                answerCount: i+1
             })
         }
     }
 
     handleSubmit(event) {
-        // const {name, value} = event.target
         const submission = [...this.state.fields]
-        const title = submission[0]
-        const questions = submission.slice(1,submission.length)
+        const question = submission[0]
+        const answers = submission.slice(1,submission.length).map(answer => ({body: answer}))
         const payload = {
-            pollName: title,
-            questions: questions,
+            question: question,
+            answers: answers
         }
         axios.post('http://localhost:5000/polls/add', payload).then(res => console.log(res.data))
     }
 
     render() {
-        var questions = [];
-        for (let i = 1; i < this.state.questionCount+1; i++) {
-            questions.push((
-            <PollQuestion key={i} label={"Option "+(i)} handleChange={this.handleChange.bind(this, i)} />
+        var answers = [];
+        for (let i = 1; i < this.state.answerCount+1; i++) {
+            answers.push((
+            <PollAnswer key={i} label={"Option "+(i)} handleChange={this.handleChange.bind(this, i)} />
             ))
         } 
         return (
@@ -79,14 +78,13 @@ class PollCreatorForm extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                     <form onSubmit={this.handleSubmit}>
-                    <PollQuestion label="Title" handleChange={this.handleChange.bind(this, 0)} />
-                    {questions}
+                    <PollAnswer label="Title" handleChange={this.handleChange.bind(this, 0)} />
+                    {answers}
                     <Button variant="contained" color="primary" type="submit" onSubmit={this.handleSubmit}>Submit Poll</Button>
                     </form>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Paper>
-            
         )
     }
 }
