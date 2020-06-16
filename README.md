@@ -23,4 +23,4 @@ Installs dependencies for the entire application. This should be the first scrip
 npm run build
 ```
 
-Builds the client and server asynchronously. This script will not accept any flags for nodemon or react. If you want to build the components with special flags, they must be done separately. This script is for convenience. The server can be run after creating a .env file in ```server/``` and inserting the connection string to the MongoDB cluster: ATLAS_URI=[CONNECTION STRING]
+Builds the client and server asynchronously. This script will not accept any flags for nodemon or react. If you want to build the components with special flags, they must be done separately. This script is for convenience. To be able to successfully run the server, you must copy the ```.env``` file located within ```server/``` into a ```.env.local``` file and override its contents with correct credentials. Look at the [dotenv-flow documentation](https://www.npmjs.com/package/dotenv-flow) for more information on this. ```.env``` should **never** contain password or secret key information. It is used to contain dummy values for development.

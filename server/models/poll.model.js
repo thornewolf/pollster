@@ -3,13 +3,20 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const pollSchema = new Schema({
-    pollname: {
+    question: {
         type: String,
         required: true,
         trim: true,
-        minlength: 3
+        minlength: 1,
+        maxlength: 280
     },
-    questions: [{body: String}]
+    answers: [{
+        body: {
+            type: String,
+            minlength: 1,
+            maxlength: 280
+        }
+    }],
 }, {
     timestamps: true
 })
