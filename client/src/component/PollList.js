@@ -4,7 +4,7 @@ import PollItem from './PollItem'
 
 const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
 
-function PollList() {
+function PollList(props) {
   return (
     <Grid container>
       <Grid item>
@@ -20,7 +20,7 @@ function PollList() {
 
           {items.map((itemId) => (
             <Grid item xs={12} md={6} lg={3} key={itemId}>
-              <PollItem />
+              <PollItem setLocationCallback={props.setLocationCallback} />
             </Grid>
           ))}
         </Grid>
