@@ -23,7 +23,7 @@ const useStyles = theme => ({
 function PollAnswer(props) {
     return (
         <div style={{ paddingBottom: 10 }}>
-        <TextField key={props.label} label={props.label} variant="standard" onChange={props.handleChange} />
+        <TextField key={props.label} label={props.label} value={props.value} variant="standard" onChange={props.handleChange} />
         </div>
     )
 }
@@ -40,16 +40,22 @@ class PollCreatorForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    resetForm() {
+        this.setState({
+            answerCount: 1,
+            fields: ['', ''],
+            isFormValid: false,
+        }) 
+    }
+
     handleChange(i, event) {
         let fields = [...this.state.fields]
         fields[i] = event.target.value
-        let isFormValid = true
-        for (let i of fields) {
-            isFormValid &= i.length < 280
-        }
+        let areFieldsValid = fields.map(field => field.length < 280)
         this.setState({
-            fields,
-            isFormValid: isFormValid
+            fields: fields,
+            isFormValid: areFieldsValid.reduce((a, b) => a && b),
+            areFieldsValid: areFieldsValid,
         })
         if (i === this.state.answerCount) {
             this.setState({
@@ -59,6 +65,11 @@ class PollCreatorForm extends React.Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault()
+        if (!this.state.isFormValid) {
+            console.log("invalid")
+            return false
+        }
         const submission = [...this.state.fields]
         const question = submission[0]
         const answers = submission.slice(1,submission.length).map(answer => ({body: answer}))
@@ -67,13 +78,15 @@ class PollCreatorForm extends React.Component {
             answers: answers
         }
         axios.post('http://localhost:5000/polls/add', payload).then(res => console.log(res.data))
+        this.resetForm() 
     }
 
     render() {
         var answers = [];
+        console.log(this.state.fields)
         for (let i = 1; i < this.state.answerCount+1; i++) {
             answers.push((
-            <PollAnswer key={i} label={"Option "+(i)} handleChange={this.handleChange.bind(this, i)} />
+            <PollAnswer key={i} label={"Option "+(i)} value={this.state.fields[i]} handleChange={this.handleChange.bind(this, i)} />
             ))
         } 
         return (
@@ -84,7 +97,7 @@ class PollCreatorForm extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                     <form onSubmit={this.handleSubmit}>
-                    <PollAnswer label="Title" handleChange={this.handleChange.bind(this, 0)} />
+                    <PollAnswer label="Title" value={this.state.fields[0]} handleChange={this.handleChange.bind(this, 0)} />
                     {answers}
                     <Button variant="contained" color="primary" type="submit" onSubmit={this.handleSubmit}>Submit Poll</Button>
                     </form>
