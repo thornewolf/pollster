@@ -34,6 +34,7 @@ class PollCreatorForm extends React.Component {
         this.state = {
             answerCount: 1,
             fields: [],
+            isFormValid: false,
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -42,8 +43,13 @@ class PollCreatorForm extends React.Component {
     handleChange(i, event) {
         let fields = [...this.state.fields]
         fields[i] = event.target.value
+        let isFormValid = true
+        for (let i of fields) {
+            isFormValid &= i.length < 280
+        }
         this.setState({
-            fields
+            fields,
+            isFormValid: isFormValid
         })
         if (i === this.state.answerCount) {
             this.setState({
