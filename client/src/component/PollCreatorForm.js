@@ -100,7 +100,12 @@ class PollCreatorForm extends React.Component {
 
         for (let i = 1; i < this.state.answerCount+1; i++) {
             answers.push((
-            <PollAnswer key={i} label={"Option "+(i)} value={this.state.fields[i]} handleChange={this.handleChange.bind(this, i)} />
+                <PollAnswer
+                    key={i}
+                    label={"Option "+(i)}
+                    value={this.state.fields[i]}
+                    handleChange={this.handleChange.bind(this, i)}
+                />
             ))
         } 
 
@@ -112,9 +117,18 @@ class PollCreatorForm extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                     <form onSubmit={this.handleSubmit}>
-                    <PollAnswer label="Title" value={this.state.fields[0]} handleChange={this.handleChange.bind(this, 0)} />
-                    {answers}
-                    <Button variant="contained" color="primary" type="submit" onSubmit={this.handleSubmit}>Submit Poll</Button>
+                        <PollAnswer
+                            label="Title"
+                            value={this.state.fields[0]}
+                            handleChange={this.handleChange.bind(this, 0)}
+                        />
+                        {answers}
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            onSubmit={this.handleSubmit}>Submit
+                        </Button>
                     </form>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
