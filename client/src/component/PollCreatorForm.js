@@ -43,9 +43,11 @@ class PollCreatorForm extends React.Component {
             answerCount: 1,
             fields: ['', ''],
             isFormValid: false,
+            expanded: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.toggleExpansion = this.toggleExpansion.bind(this)
     }
 
     resetForm() {
@@ -53,6 +55,7 @@ class PollCreatorForm extends React.Component {
             answerCount: 1,
             fields: ['', ''],
             isFormValid: false,
+            expanded: false
         }) 
     }
 
@@ -95,6 +98,10 @@ class PollCreatorForm extends React.Component {
         this.resetForm() 
     }
 
+    toggleExpansion() {
+        this.setState({ expanded: !this.state.expanded })
+    }
+
     render() {
         var answers = [];
 
@@ -111,7 +118,7 @@ class PollCreatorForm extends React.Component {
 
         return (
             <Paper>
-                <ExpansionPanel >
+                <ExpansionPanel expanded={this.state.expanded} onChange={this.toggleExpansion}>
                     <ExpansionPanelSummary>
                     <h2>Create your own poll</h2>
                     </ExpansionPanelSummary>
