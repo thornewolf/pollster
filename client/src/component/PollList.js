@@ -1,31 +1,51 @@
 import React from 'react';
 import { Grid } from '@material-ui/core'
 import PollItem from './PollItem'
+import axios from 'axios'
 
-const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
+class PollList extends React.Component { 
+  constructor(props) {
+    super(props)
 
-function PollList(props) {
-  return (
-    <Grid container>
-      <Grid item>
-        <h1>
-          Top Polls
-        </h1>
-      </Grid>
-      <Grid
+    this.state = {
+      items: [],
+    }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:5000/polls/')
+      .then(res => {
+        this.setState({items: res.data})
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  render() {
+    console.log(this.state.items)
+    return(
+      <Grid container>
+        <Grid item>
+          <h1>
+            Top Polls
+          </h1>
+        </Grid>
+        <Grid
           container
           direction="row"
           spacing={3}
         >
-
-          {items.map((itemId) => (
-            <Grid item xs={12} md={6} lg={3} key={itemId}>
-              <PollItem setLocationCallback={props.setLocationCallback} />
+          {this.state.items.map(item => (
+            <Grid item xs={12} md={6} lg={3} key={item._id}>
+              <PollItem question={item.question} setLocationCallback={this.setLocationCallback} />
             </Grid>
           ))}
         </Grid>
       </Grid>
-  )
+    )
+  } 
 }
 
-export default PollList;
+
+export default PollList 
