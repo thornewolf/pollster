@@ -2,19 +2,24 @@ import React from 'react';
 import './App.css';
 import Header from './Header'
 import Content from './Content'
+import PollResponseForm from './PollResponseForm'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      location: "home"
+      location: "home",
+      locationTransitionData: {}
     }
     this.setLocationCallback = this.setLocationCallback.bind(this)
   }
 
-  setLocationCallback(location) {
+  setLocationCallback(location, transitionData={}) {
+    console.log("callback run")
+    console.log(transitionData)
     this.setState({
-      location: location
+      location: location,
+      locationTransitionData: transitionData
     })
   }
 
@@ -34,13 +39,16 @@ class App extends React.Component {
       case "responding":
         return (
           <div className="App">
-            <div>You are now responding</div>
+            <Header />
+            <PollResponseForm setLocationCallback={this.setLocationCallback} pollId={this.state.locationTransitionData.pollId}/>
           </div>
         )
       case "results":
         return (
           <div className="App">
+            <Header />
             <div>You are now viewing results</div>
+            
           </div>
         )
     }

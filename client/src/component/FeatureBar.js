@@ -37,7 +37,7 @@ const FeatureBar = props => {
       <Grid container direction="row" spacing={3}>
       {items.slice(0,5).map((item) => (
         <Grid item key={item._id} className={classes.item}>
-          <PollItem question={item.question} setLocationCallback={props.setLocationCallback}/>
+          <PollItem value={item._id} question={item.question} setLocationCallback={props.setLocationCallback}/>
         </Grid>
       ))}
       </Grid>
