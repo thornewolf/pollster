@@ -28,7 +28,7 @@ function PollItem(props) {
                 <Typography variant="h3">
                 </Typography>
                 <Typography variant="body1" component="p">
-                    Pollsters of Pollster, what is your favorite color to eat?
+                   {props.question} 
                 </Typography>
                 
             </CardContent>
