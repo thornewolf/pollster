@@ -6,7 +6,6 @@ import axios from 'axios'
 
 const useStyles = makeStyles({
     root: {
-      paddingTop: "10px"
     },
     item: {
     },

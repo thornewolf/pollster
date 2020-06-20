@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
     const classes = useStyles()
     return (
-      <Paper style={{paddingBottom: 20}}>
+      <Paper style={{paddingBottom: 60}}>
         <AppBar position="fixed">
           <Toolbar className={classes.paper}>
           <Typography variant="h5">
