@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     },
 });
   
-const FeatureBar = () => {
+const FeatureBar = props => {
   const [items, setItems] = useState([])
   const classes = useStyles()
 
@@ -38,7 +38,7 @@ const FeatureBar = () => {
       <Grid container direction="row" spacing={3}>
       {items.slice(0,5).map((item) => (
         <Grid item key={item._id} className={classes.item}>
-          <PollItem question={item.question}/>
+          <PollItem question={item.question} setLocationCallback={props.setLocationCallback}/>
         </Grid>
       ))}
       </Grid>

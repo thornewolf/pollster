@@ -27,7 +27,7 @@ function Content(props) {
                 </Grid>
             </Grid>
             <Grid item lg={3} style={{ paddingRight: "20px"}}>
-                <FeatureBar />
+                <FeatureBar setLocationCallback={props.setLocationCallback}/>
             </Grid>
             
             
