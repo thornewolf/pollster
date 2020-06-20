@@ -38,7 +38,7 @@ class PollList extends React.Component {
         >
           {this.state.items.map(item => (
             <Grid item xs={12} md={6} lg={3} key={item._id}>
-              <PollItem question={item.question} setLocationCallback={this.setLocationCallback} />
+              <PollItem question={item.question} setLocationCallback={this.props.setLocationCallback} />
             </Grid>
           ))}
         </Grid>
