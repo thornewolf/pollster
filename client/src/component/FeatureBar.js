@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core'
 import PollItem from './PollItem'
-
-const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,5,6,7,8,9,10,11,12,13];
+import axios from 'axios'
 
 const useStyles = makeStyles({
     root: {
@@ -13,26 +12,38 @@ const useStyles = makeStyles({
     },
 });
   
-  function FeatureBar() {
-    const classes = useStyles();
-    return (
-      <Grid 
-        container
-        spacing={2}
-        direction="column"
-        className={classes.root}>
-        <Grid item>
-          <h2>Featured Polls</h2>
-        </Grid>
-        <Grid container direction="row" spacing={3}>
-        {items.slice(0,5).map((itemId) => (
-              <Grid item key={itemId} className={classes.item}>
-                <PollItem className=" "/>
-              </Grid>
-            ))}
-        </Grid>
+const FeatureBar = () => {
+  const [items, setItems] = useState([])
+  const classes = useStyles()
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/polls/')
+      .then(res => {
+        setItems(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  })
+
+  return (
+    <Grid 
+      container
+      spacing={2}
+      direction="column"
+      className={classes.root}>
+      <Grid item>
+        <h2>Featured Polls</h2>
       </Grid>
-    )
-  }
+      <Grid container direction="row" spacing={3}>
+      {items.slice(0,5).map((item) => (
+        <Grid item key={item._id} className={classes.item}>
+          <PollItem question={item.question}/>
+        </Grid>
+      ))}
+      </Grid>
+    </Grid>
+  )
+}
 
 export default FeatureBar;
