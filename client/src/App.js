@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom'
 
 const App = props => {
   return(
+    <Header />
     <Router>
       <Route exact path="/" component={Content} />
       <Route path="/poll/:id" component={PollResponseForm} />

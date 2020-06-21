@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Container, Grid } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
@@ -11,13 +11,18 @@ const useStyles = theme => ({
 });
 
 const PollResponseForm = props => {
-    const pollData = axios.get(`http://localhost:5000/polls/${props.match.params.id}`)
-        .then(res => res.data)
+    const [pollData, setPollData] = useState()
+    useEffect(() => {
+        axios.get(`http://localhost:5000/polls/${props.match.params.id}`)
+            .then(res => setPollData(res.data))
+    })
 
     return (
         <Container>
             <Grid direction="row">
-                <PollResults pollData={pollData}/> 
+                {pollData &&
+                    <PollResults pollData={pollData}/>
+                }
             </Grid>
         </Container>
     )
