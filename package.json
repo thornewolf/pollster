@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/thornewolf/pollster#readme",
   "dependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "plotly.js": "^1.54.3",
+    "plotly.js-dist": "^1.54.3",
+    "react-plotly.js": "^2.4.0"
   }
 }

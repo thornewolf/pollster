@@ -3,6 +3,7 @@ import './App.css';
 import Header from './Header'
 import Content from './Content'
 import PollResponseForm from './PollResponseForm'
+import PollResults from './PollResults'
 
 class App extends React.Component {
   constructor(props) {
@@ -47,8 +48,7 @@ class App extends React.Component {
         return (
           <div className="App">
             <Header />
-            <div>You are now viewing results</div>
-            
+            <PollResults />
           </div>
         )
     }
