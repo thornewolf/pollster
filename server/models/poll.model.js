@@ -15,6 +15,11 @@ const pollSchema = new Schema({
             type: String,
             minlength: 1,
             maxlength: 280
+        },
+        responseCount: {
+            type: Number,
+            min: 0,
+            default: 0
         }
     }],
 }, {
@@ -23,4 +28,4 @@ const pollSchema = new Schema({
 
 const Poll = mongoose.model('Poll', pollSchema)
 
-module.exports = Poll 
+module.exports = Poll
