@@ -17,7 +17,8 @@ const useStyles = makeStyles({
   });  
 
 function PollItem(props) {
-    const classes = useStyles();
+    const classes = useStyles()
+    const value = props.value
     return (
         <Paper>
             <Card 
@@ -33,7 +34,7 @@ function PollItem(props) {
                 
             </CardContent>
             <CardActions spacing={10}>
-                <Button className={classes.takePoll} color="primary" variant="outlined" onClick={() => {props.setLocationCallback("responding")}}>Take Poll</Button>
+                <Button className={classes.takePoll} color="primary" variant="outlined" onClick={() => {props.setLocationCallback("responding", {pollId:props.value})}}>Take Poll</Button>
                 <Button className={classes.viewResults} color="secondary" variant="outlined" onClick={() => {props.setLocationCallback("results")}}>Results</Button>
             </CardActions>
         </Card>
