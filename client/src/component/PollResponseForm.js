@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios'
 
 import './PollResponseForm.css'
+import { Link } from 'react-router-dom';
 
 class PollResponseForm extends React.Component {
     constructor(props) {
@@ -15,7 +16,6 @@ class PollResponseForm extends React.Component {
             poll: {},
             answer: "",
         }
-        this.setLocationCallback = props.setLocationCallback
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -41,7 +41,7 @@ class PollResponseForm extends React.Component {
 
     populateFields() {
         var poll = {}
-        axios.get('http://localhost:5000/polls/'+this.state.pollId)
+        axios.get(`http://localhost:5000/polls/${this.props.match.params.id}`)
         .then(res => {
             poll = res.data
             this.setState({
@@ -74,7 +74,9 @@ class PollResponseForm extends React.Component {
                                         <Button color="primary" variant="contained" type="submit" onSubmit={this.handleSubmit}>Submit Response</Button>
                                     </Grid>
                                     <Grid item>
-                                        <Button color="default" variant="contained">View Results</Button>
+                                        <Link exact to={`../results/${this.props.match.params.id}`}>
+                                            <Button color="default" variant="contained">View Results</Button>
+                                        </Link>
                                     </Grid>
                             </Grid>
                         </FormControl>
