@@ -16,7 +16,7 @@ const pollSchema = new Schema({
             minlength: 1,
             maxlength: 280
         },
-        responseCount: {
+        count: {
             type: Number,
             min: 0,
             default: 0
