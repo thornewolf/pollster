@@ -18,7 +18,8 @@ const useStyles = makeStyles({
   });  
 
 function PollItem(props) {
-    const classes = useStyles();
+    const classes = useStyles()
+    const value = props.value
     return (
         <Paper>
             <Card 
@@ -34,8 +35,10 @@ function PollItem(props) {
                 
             </CardContent>
             <CardActions spacing={10}>
-                <Button className={classes.takePoll} color="primary" variant="outlined">Take Poll</Button>
-                <Link to={`/poll/${props.pollId}`}>
+                <Link to={`/poll/response/${props.pollId}`}>
+                    <Button className={classes.takePoll} color="primary" variant="outlined">Take Poll</Button>
+                </Link>
+                <Link to={`/poll/results/${props.pollId}`}>
                     <Button className={classes.viewResults} color="secondary" variant="outlined">Results</Button>
                 </Link>
             </CardActions>

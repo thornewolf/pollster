@@ -21,12 +21,12 @@ function Content(props) {
                         <PollCreatorForm />
                     </Grid>
                     <Grid item>
-                        <PollList setLocationCallback={props.setLocationCallback} />
+                        <PollList />
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item lg={3} style={{ paddingRight: "20px"}}>
-                <FeatureBar setLocationCallback={props.setLocationCallback}/>
+                <FeatureBar />
             </Grid>
             
             

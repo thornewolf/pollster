@@ -6,7 +6,6 @@ import axios from 'axios'
 
 const useStyles = makeStyles({
     root: {
-      paddingTop: "10px"
     },
     item: {
     },
@@ -38,7 +37,7 @@ const FeatureBar = props => {
       <Grid container direction="row" spacing={3}>
       {items.slice(0,5).map((item) => (
         <Grid item key={item._id} className={classes.item}>
-          <PollItem question={item.question} pollId={item._id} setLocationCallback={props.setLocationCallback}/>
+          <PollItem question={item.question} pollId={item._id} />
         </Grid>
       ))}
       </Grid>
