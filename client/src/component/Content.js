@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 import FeatureBar from './FeatureBar'
 import PollList from './PollList'
 import PollCreatorForm from './PollCreatorForm'
-import PollResponseForm from './PollResponseForm'
 
 import './Content.css'
 
