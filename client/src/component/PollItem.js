@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     },
     takePoll: {
         marginRight: 'auto',
+        whiteSpace: 'nowrap'
     },
     viewResults: {
         marginLeft: 'auto',
