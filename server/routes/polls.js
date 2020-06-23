@@ -34,7 +34,7 @@ router.route('/:id')
             {new: true}
         )
             .then(poll => res.json(poll))
-            .catch(err => 'Error: ' + err)
+            .catch(err => res.status(400).json('Error: ' + err))
     })
 router.route('/:id').delete((req, res) => {
     Poll.findByIdAndDelete(req.params.id)
