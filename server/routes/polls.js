@@ -21,12 +21,21 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
-router.route('/:id').get((req, res) => {
-    Poll.findById(req.params.id)
-        .then(poll => res.json(poll))
-        .catch(err => res.status(400).json('Error: ' + err))
-})
-
+router.route('/:id')
+    .get((req, res) => {
+        Poll.findById(req.params.id)
+            .then(poll => res.json(poll))
+            .catch(err => res.status(400).json('Error: ' + err))
+    })
+    .patch((req, res) => {
+        Poll.findOneAndUpdate(
+            {_id: req.params.id, "answers._id": req.body.answer_id},
+            {$inc: {"answers.$.count": 1}},
+            {new: true}
+        )
+            .then(poll => res.json(poll))
+            .catch(err => 'Error: ' + err)
+    })
 router.route('/:id').delete((req, res) => {
     Poll.findByIdAndDelete(req.params.id)
         .then(res.json('Poll deleted'))
