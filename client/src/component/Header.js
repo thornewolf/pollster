@@ -3,6 +3,7 @@ import { Typography, AppBar } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom'
 import './Header.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,10 +25,10 @@ function Header() {
       <Paper style={{paddingBottom: 60}}>
         <AppBar position="fixed">
           <Toolbar className={classes.paper}>
-          <Typography variant="h5">
-              Pollster
-          </Typography>
-          </Toolbar>
+            <Link exact to={"/"} style={{ textDecoration: 'none' }}>
+              <Typography variant="h5" style={{color: 'white'}}>Pollster</Typography>
+            </Link>
+         </Toolbar>
         </AppBar>
       </Paper>
     )
