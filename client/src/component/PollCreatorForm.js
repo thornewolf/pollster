@@ -80,7 +80,9 @@ class PollCreatorForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        if (!this.state.isFormValid || this.state.fields[0].length === 0) {
+        if (!this.state.isFormValid 
+            || this.state.fields[0].length === 0
+            || this.state.fields.slice(1).join('') === '') {
             return false
         }
         const submission = [...this.state.fields]
