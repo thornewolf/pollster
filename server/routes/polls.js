@@ -17,7 +17,7 @@ router.route('/add').post((req, res) => {
     }) 
 
     newPoll.save()
-        .then(() => res.json('Poll added!'))
+        .then(() => res.json(newPoll._id))
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
