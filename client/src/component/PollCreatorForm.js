@@ -3,6 +3,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { Paper } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -43,7 +46,9 @@ class PollCreatorForm extends React.Component {
             answerCount: 1,
             fields: ['', ''],
             isFormValid: false,
-            expanded: false
+            expanded: false,
+            redirect: false,
+            redirectTarget: ""
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -96,7 +101,10 @@ class PollCreatorForm extends React.Component {
         }
 
         console.log("Sending Payload: " + payload)
-        axios.post('http://localhost:5000/polls/add', payload).then(res => console.log(res.data))
+        axios.post('http://localhost:5000/polls/add', payload).then(res => {
+            console.log(res.data)
+            this.setState({redirect: true, redirectTarget:`poll/response/${res.data}`})
+            })
         this.resetForm() 
     }
 
@@ -105,6 +113,10 @@ class PollCreatorForm extends React.Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirectTarget} />
+        }
+
         var answers = [];
 
         for (let i = 1; i < this.state.answerCount+1; i++) {
@@ -116,7 +128,7 @@ class PollCreatorForm extends React.Component {
                     handleChange={this.handleChange.bind(this, i)}
                 />
             ))
-        } 
+        }
 
         return (
             <Paper>
